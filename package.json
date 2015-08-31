@@ -1,0 +1,14 @@
+{
+  "name": "gitbook-plugin-platanus-blog",
+  "version": "1.0.0",
+  "description": "",
+  "engines": {
+    "gitbook": ">1.x.x"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+  	"q": "*",
+    "moment": "*"
+  }
+}

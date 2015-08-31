@@ -3,11 +3,11 @@ var Q = require('q');
 var moment = require('moment');
 
 function getHeader(tags){
-  return "<h2>Post en Codigo Banana</h2>"
+  return "<h2>Post en Codigo Banana</h2>";
 }
 
 function getTagHeader(tag){
-  return "<h5>" + tag + "</h5>"
+  return "<h5>" + tag + "</h5>";
 }
 
 function getPostLink(post){
@@ -22,11 +22,12 @@ function getPostLink(post){
 module.exports = {
   hooks: {
 		"init": function (a,b) {
-      var url = "http://localhost:4001/posts-by-tag.json";
+      var pluginsConfig = this.options.pluginsConfig.platanusBlog;
+      var url = pluginsConfig.url;
 
       var variables = this.config.options.variables;
       var deferred = Q.defer();
-      
+
       http.get(url, function(res){
         var str = '';
 

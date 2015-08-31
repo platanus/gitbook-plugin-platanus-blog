@@ -1,6 +1,6 @@
 {
   "name": "gitbook-plugin-platanus-blog",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "engines": {
     "gitbook": ">1.x.x"

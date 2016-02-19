@@ -75,7 +75,7 @@ function combinePosts(combinedTags, data){
 
 module.exports = {
   hooks: {
-		"init": function (a,b) {
+    "init": function (a,b) {
       var pluginsConfig = this.options.pluginsConfig.platanusBlog;
       var url = pluginsConfig.url;
 
@@ -92,39 +92,39 @@ module.exports = {
     },
   },
   blocks: {
-      getPostsByTag: {
-          process: function(block) {
-            var ctx = this.ctx;
-            var tagsCombinations = combinations(block.args).reverse();
+    getPostsByTag: {
+      process: function(block) {
+        var ctx = this.ctx;
+        var tagsCombinations = combinations(block.args).reverse();
 
-            var data = ctx.config.variables.tags || {};
+        var data = ctx.config.variables.tags || {};
 
-            var combinedPosts = combinePosts(tagsCombinations, data);
+        var combinedPosts = combinePosts(tagsCombinations, data);
 
-            // render
-            var str = getHeader();
+        // render
+        var str = getHeader();
 
-            // if(Object.keys(combinedPosts).length > 0){
-            var noPosts = true;
-            _.each(combinedPosts, function(_posts, _tags){
+        // if(Object.keys(combinedPosts).length > 0){
+        var noPosts = true;
+        _.each(combinedPosts, function(_posts, _tags){
 
-              str += getTagHeader(_tags);
-              str += "<ul>";
+          str += getTagHeader(_tags);
+          str += "<ul>";
 
-              _.each(_posts, function(_post){
-                noPosts = false;
-                str += getPostLink(_post);
-              });
+          _.each(_posts, function(_post){
+            noPosts = false;
+            str += getPostLink(_post);
+          });
 
-              str += "</ul>";
-            });
-            // }
-            if(noPosts){
-              str += getNoPosts();
-            }
-            
-            return str;
-          }
+          str += "</ul>";
+        });
+        // }
+        if(noPosts){
+          str += getNoPosts();
+        }
+
+        return str;
       }
+    }
   }
 };

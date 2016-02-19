@@ -1,4 +1,4 @@
-var http = require('http');
+var request = require('request');
 var Q = require('q');
 var moment = require('moment');
 var _ = require('lodash');
@@ -82,19 +82,9 @@ module.exports = {
       var variables = this.config.options.variables;
       var deferred = Q.defer();
 
-      http.get(url, function(res){
-        var str = '';
-
-          //another chunk of data has been recieved, so append it to `str`
-          res.on('data', function (chunk) {
-            str += chunk;
-          });
-
-          //the whole response has been recieved, so we just print it out here
-          res.on('end', function () {
-            variables.tags = JSON.parse(str);
-            deferred.resolve();
-          });
+      request({ url: url, json: true }, function(error, res, body) {
+        variables.tags = body;
+        deferred.resolve();
       });
 
       // return deferred.promise;
